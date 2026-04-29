@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ───────────────────────────────────────── */
+:root {
+  --rose:       #d4537e;
+  --rose-deep:  #99354f;
+  --rose-light: #f4c0d1;
+  --rose-pale:  #fbeaf0;
+  --black:      #0f0c0d;
+  --off-white:  #fdf8fa;
+  --gray:       #7a6670;
+  --gray-light: #f0e8ec;
+}
+
+/* ── Reset & base ────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  background: var(--off-white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+/* ── Container ───────────────────────────────────────── */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ── BANNER ──────────────────────────────────────────── */
+.banner {
+  position: relative;
+  background: var(--black);
+  padding: 5rem 0 4rem;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -80px;
+  width: 520px;
+  height: 520px;
+  background: var(--rose);
+  border-radius: 50%;
+  opacity: 0.12;
+}
+
+.banner::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 30%;
+  width: 200px;
+  height: 4px;
+  background: var(--rose);
+}
+
+.banner .container {
+  position: relative;
+  z-index: 1;
+}
+
+.banner h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  line-height: 0.9;
+  margin-bottom: 1rem;
+}
+
+.banner h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--rose-light);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 2.2rem;
+}
+
+/* CTA button */
+.btn-yellow {
+  display: inline-block;
+  background: var(--rose);
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.85rem 2.4rem;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-yellow:hover {
+  background: var(--rose-deep);
+  transform: translateY(-2px);
+}
+
+/* ── Profile section ─────────────────────────────────── */
+.container > h2:first-of-type {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.05em;
+  color: var(--black);
+  margin-top: 4rem;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.subtitle {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-top: 0.35rem;
+  margin-bottom: 1.6rem;
+}
+
+.avatar {
+  display: block;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--rose);
+  outline: 6px solid var(--rose-pale);
+  margin-bottom: 4rem;
+}
+
+/* ── Services heading ────────────────────────────────── */
+.container > h2:last-of-type {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.container > h2:last-of-type::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--rose);
+  margin-top: 6px;
+}
+
+/* ── Cards grid ──────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  padding-bottom: 5rem;
+  counter-reset: card-num;
+}
+
+.card {
+  position: relative;
+  background: var(--gray-light);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s;
+  counter-increment: card-num;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card::before {
+  content: counter(card-num, decimal-leading-zero);
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: #ffffff;
+  z-index: 2;
+  line-height: 1;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.card:hover::after {
+  transform: scaleX(1);
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: filter 0.3s, transform 0.4s;
+}
+
+.card:hover img {
+  filter: grayscale(0%) brightness(0.9);
+  transform: scale(1.04);
+}
+
+.card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.1em;
+  color: var(--black);
+  padding: 0.85rem 1rem 0.9rem;
+  background: #ffffff;
+  border-left: 3px solid var(--rose);
+  transition: background 0.2s;
+}
+
+.card:hover h3 {
+  background: var(--rose-pale);
+}
